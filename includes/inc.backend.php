@@ -41,11 +41,19 @@
 	}
 	
 	// Return the URL to the requested Template
+	$section=new stdClass();
 	function template($url,$relative=true)
 	{
-		global $mecs;	
-		require_once(style($mecs->settings->templatefolder.$url,$relative));
+		global $mecs,$tpl;
+		return style($mecs->settings->templatefolder.$url,$relative).".php";
 	}
+	
+	$tpl=new stdClass();
+	function render($url)
+	{
+		global $mecs,$tpl;
+		require_once($url);
+	}	
 
 	// Return the current URL
 	function url()
